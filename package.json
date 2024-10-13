@@ -1,0 +1,37 @@
+{
+  "name": "@asika32764/vue-pagination",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "main": "dist/vue-pagination.umd.cjs",
+  "browser": "dist/vue-pagination.umd.js",
+  "module": "dist/vue-pagination.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:prod": "cross-env NODE_ENV=production vite build",
+    "build:docs": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@types/node": "^22.7.5",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "cross-env": "^7.0.3",
+    "minimist": "^1.2.8",
+    "rollup": "^4.24.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.79.5",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.2.10",
+    "vite-plugin-dts": "^4.2.4",
+    "vue": "^3.5.12",
+    "vue-tsc": "^2.1.6"
+  }
+}

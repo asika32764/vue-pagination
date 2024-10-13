@@ -1,6 +1,5 @@
 {
   "name": "@asika32764/vue-pagination",
-  "private": true,
   "version": "0.1.0",
   "type": "module",
   "typings": "dist/index.d.ts",

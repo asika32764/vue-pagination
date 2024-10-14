@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/npm/v/%40asika32764/vue-pagination.svg?style=flat-square)](https://www.npmjs.com/package/@asika32764/vue-pagination)
 [![License](https://img.shields.io/npm/l/%40asika32764/vue-pagination.svg?style=flat-square)](LICENSE)
 
-A very simple pagination without any style that supports developers to custom for every project.
+A very simple pagination without any style that supports developers to custom for every project. [DEMO](https://about.asika.tw/vue-pagination/)
 
 <!-- TOC -->
 

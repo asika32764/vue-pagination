@@ -28,7 +28,9 @@ yarn add @asika32764/vue-pagination
       </div>
     </div>
 
-    <p class="lead">A Vue.js 3 simple pagination component without default style that you can integrate to any framework.</p>
+    <p class="lead">
+      A Vue.js 3 simple pagination component without default style that you can integrate to any framework.
+    </p>
 
     <div class="d-flex gap-2 justify-content-center">
       <a class="btn btn-primary" href="https://github.com/asika32764/vue-pagination#readme"

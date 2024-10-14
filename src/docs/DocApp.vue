@@ -17,14 +17,18 @@ yarn add @asika32764/vue-pagination
   <header class="text-center mx-auto" style="max-width: 650px">
     <h1 class="mb-4">Vue Pagination</h1>
 
-    <p class="lead">A Vue.js 3 simple pagination component without default style that you can integrate to any framework.</p>
+    <div class="d-flex gap-2 justify-content-center mb-3">
+      <div>
+        <a href="https://www.npmjs.com/package/@asika32764/vue-pagination" target="_blank">
+          <img src="https://img.shields.io/npm/v/%40asika32764/vue-pagination.svg?style=flat-square" alt="Version">
+        </a>
+      </div>
+      <div>
+        <img src="https://img.shields.io/npm/l/%40asika32764/vue-pagination.svg?style=flat-square" alt="License">
+      </div>
+    </div>
 
-    <p>
-      <a href="https://www.npmjs.com/package/@asika32764/vue-pagination" target="_blank">
-        <img src="https://img.shields.io/npm/v/%40asika32764/vue-pagination.svg?style=flat-square" alt="Version">
-      </a>
-      <img src="https://img.shields.io/npm/l/%40asika32764/vue-pagination.svg?style=flat-square" alt="License">
-    </p>
+    <p class="lead">A Vue.js 3 simple pagination component without default style that you can integrate to any framework.</p>
 
     <div class="d-flex gap-2 justify-content-center">
       <a class="btn btn-primary" href="https://github.com/asika32764/vue-pagination#readme"

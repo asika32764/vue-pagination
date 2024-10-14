@@ -1,6 +1,6 @@
 {
   "name": "@asika32764/vue-pagination",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "typings": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite --config vite.config.docs.ts",
     "build": "vite build",
-    "build:prod": "cross-env NODE_ENV=production vite build",
+    "build:prod": "yarn build:docs & yarn build",
     "build:docs": "vue-tsc && vite build  --config vite.config.docs.ts",
     "preview": "vite preview"
   },

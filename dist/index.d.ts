@@ -12,6 +12,7 @@ declare const __VLS_component: DefineComponent<__VLS_PublicProps, {}, {}, {}, {}
 "onPages-updated"?: ((...args: any[]) => any) | undefined;
 }>, {
 maxItems: number;
+linkTag: any;
 }, {}, {}, {}, string, ComponentProvideOptions, false, {}, any>;
 
 declare const __VLS_defaults: {
@@ -25,29 +26,29 @@ declare type __VLS_PublicProps = {
 declare function __VLS_template(): {
     slots: {
         "page-item"?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
             key: string;
         }): any;
         "first-icon"?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
         }): any;
         "previous-icon"?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
         }): any;
         "next-icon"?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
         }): any;
         "last-icon"?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
         }): any;
         page?(_: {
-            page: PageItem;
-            href: any;
+            item: PageItem;
+            to: any;
         }): any;
     };
     refs: {};
@@ -60,11 +61,12 @@ declare let __VLS_typeProps: {
     total: number;
     perPage: number;
     maxItems?: number;
+    linkTag?: any;
     itemClass?: any;
     linkClass?: any;
     activeClass?: any;
     disabledClass?: any;
-    route?: ((page: PageItem) => any) | true;
+    route?: ((page: PageItem) => any) | boolean;
 };
 
 declare type __VLS_WithTemplateSlots<T, S> = T & {

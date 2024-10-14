@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ShowCard from '../ShowCard.vue';
 import { ref } from 'vue';
 import VuePagination from '../../VuePagination.vue';
 
@@ -20,27 +21,19 @@ const code = `<VuePagination
 </script>
 
 <template>
-<div class="card">
-  <div class="card-body">
-    <div class="d-flex justify-content-center border p-3 bg-light">
-      <VuePagination
-        v-model="page"
-        :total="total"
-        :per-page="perPage"
-        class="pagination"
-        item-class="page-item"
-        link-class="page-link"
-        active-class="active"
-        disabled-class="disabled"
-      >
-      </VuePagination>
-    </div>
-
-    <div class="mt-3">
-      <pre class="bg-dark p-3 text-light rounded m-0">{{ code }}</pre>
-    </div>
-  </div>
-</div>
+  <ShowCard :code>
+    <VuePagination
+      v-model="page"
+      :total="total"
+      :per-page="perPage"
+      class="pagination"
+      item-class="page-item"
+      link-class="page-link"
+      active-class="active"
+      disabled-class="disabled"
+    >
+    </VuePagination>
+  </ShowCard>
 </template>
 
 <style scoped>

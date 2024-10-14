@@ -5,6 +5,11 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   base: `./`,
+  resolve: {
+    alias: {
+      '@': resolve('./src'),
+    },
+  },
   plugins: [
     vue(),
   ],

@@ -372,3 +372,24 @@ enum PageType {
 | `last-icon`     | `{ item: PageItem, to: any }` | The item text for last link.             |
 | `page`          | `{ item: PageItem, to: any }` | The item text for every page links.      |
 | `page-item`     | `{ item: PageItem, to: any }` | The page item HTML for every page items. |
+
+## Contribution
+
+Run:
+
+```shell
+yarn install
+yarn dev
+```
+
+The vite server will raise a doc site on `http://localhost:5173`
+
+The doc site entry file is located at: `src/docs/main.ts`.
+
+You can add your code at this file to test your changes, remeber don't commit your test code to git.
+
+After developed, run this command to build dist files.
+
+```shell
+yarn build:prod
+```

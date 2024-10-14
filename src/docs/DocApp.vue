@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ComposableExample from '@/docs/example/ComposableExample.vue';
 import CustomPageItemsExample from './example/CustomPageItemsExample.vue';
 import CustomIconsStyleExample from './example/CustomIconsStyleExample.vue';
 import BootstrapStyleExample from './example/BootstrapStyleExample.vue';
@@ -81,6 +82,12 @@ yarn add @asika32764/vue-pagination
       <h2 class="text-center mb-3">Custom Page Items</h2>
 
       <CustomPageItemsExample />
+    </section>
+
+    <section>
+      <h2 class="text-center mb-3">Use Composable</h2>
+
+      <ComposableExample />
     </section>
   </div>
 

@@ -6,7 +6,6 @@
 A very simple pagination without any style that supports developers to custom for every project. [DEMO](https://about.asika.tw/vue-pagination/)
 
 <!-- TOC -->
-
 * [Vue Pagination](#vue-pagination)
   * [Installation](#installation)
   * [Getting Started](#getting-started)
@@ -18,11 +17,12 @@ A very simple pagination without any style that supports developers to custom fo
   * [Custom Slots](#custom-slots)
     * [Page Icons and Numbers](#page-icons-and-numbers)
     * [Page Items](#page-items)
+  * [Custom UI by Composable](#custom-ui-by-composable)
   * [Interfaces](#interfaces)
     * [Props](#props)
     * [Events](#events)
     * [Slots](#slots)
-
+  * [Contribution](#contribution)
 <!-- TOC -->
 
 ## Installation
@@ -335,6 +335,84 @@ enum PageType {
   HIGHER = 'higher',
   NEXT = 'next',
   LAST = 'last',
+}
+```
+
+## Custom UI by Composable
+
+Vue-Pagination provides a `usePagination()` composable that you can implement your custom pagination UI.
+
+```vue
+<script setup lang="ts">
+import { usePagination, PageType } from '@asika32764/vue-pagination';
+
+const {
+  total,
+  perPage,
+  currentPage,
+  maxItems,
+  pages,
+  pagesCount,
+} = usePagination({ total: 150, perPage: 10, currentPage: 1 });
+
+</script>
+
+<template>
+  <div class="pagination">
+    <div v-for="item of pages" class="page-item">
+      <a href="javascript:void(0)" class="page-link"
+        :class="{ active: item.active, disabled: item.disabled }"
+        @click.prevent="currentPage = item.page"
+      >
+        <FontAwesomeIcon v-if="item.type === PageType.FIRST" :icon="faBackwardStep" />
+        <FontAwesomeIcon v-else-if="item.type === PageType.PREVIOUS" :icon="faBackward" />
+        <FontAwesomeIcon v-else-if="item.type === PageType.NEXT" :icon="faForward" />
+        <FontAwesomeIcon v-else-if="item.type === PageType.LAST" :icon="faForwardStep" />
+        <span v-else>{{ item.page }}</span>
+      </a>
+    </div>
+  </div>
+</template>
+```
+
+You can send empty options and configure options later, every ref variables can be changed and pagination will auto re-compile. 
+
+```ts
+const {
+  total,
+  perPage,
+  currentPage,
+  maxItems,
+  pages,
+  pagesCount,
+} = usePagination();
+
+total.value = 150;
+perPage.value = 10;
+
+```
+
+If you are building a pagination wrapper, you can send `MaybeRefOrGetter` as options, Vue-Pagination will auto listen it.
+
+```ts
+const props = defineProps<{
+  total: number;
+  perPage: number;
+  maxItems?: number;
+}>();
+
+const currentPage = defineModel({ default: 1 });
+
+const { pages } = usePagination({
+  total: () => props.total, // Getter function
+  perPage: () => props.perPage,
+  currentPage, // ref
+  maxItems: () => props.maxItems
+});
+
+// Pages will auto refresh after any options changed.
+for (var page of pages.value) {
+  // ...
 }
 ```
 

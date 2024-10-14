@@ -1,0 +1,17 @@
+.*
+*.log
+*.swp
+*.yml
+bower.json
+coverage
+config
+public
+bin
+docs
+README.md
+index.html
+LICENSE
+tsconfig.json
+tsconfig.lib.json
+tsconfig.node.json
+vite.config.ts

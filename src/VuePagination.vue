@@ -8,14 +8,16 @@ const props = withDefaults(
       total: number;
       perPage: number;
       maxItems?: number;
+      linkTag?: any;
       itemClass?: any;
       linkClass?: any;
       activeClass?: any;
       disabledClass?: any;
-      route?: ((page: PageItem) => any) | true;
+      route?: ((page: PageItem) => any) | boolean;
     }>(),
     {
       maxItems: 5,
+      linkTag: 'a',
     }
 );
 
@@ -144,39 +146,58 @@ function createLink(page: PageItem) {
 function clickPage(event: MouseEvent, page: PageItem) {
   if (!props.route) {
     currentPage.value = page.page;
-    emits('page-click', event, page.page);
+    emits('page-click', event, page);
   }
+}
+
+function linkAttrs(item: PageItem) {
+  if (props.linkTag === 'a') {
+    return {
+      href: createLink(item)
+    }
+  }
+
+  if (props.linkTag === 'button') {
+    return {
+      disabled: item.disabled
+    };
+  }
+
+  return {
+    to: createLink(item),
+    disabled: item.disabled
+  };
 }
 </script>
 
 <template>
   <div>
-    <slot v-for="page of compiledPages"
-      :key="`${page.type}-${page.page}`"
+    <slot v-for="item of compiledPages"
+      :key="`${item.type}-${item.page}`"
       name="page-item"
-      v-bind="{ page, href: createLink(page) }"
+      v-bind="{ item, to: createLink(item) }"
     >
       <div :class="itemClass">
-        <a :href="createLink(page)"
-            @click="clickPage($event, page)"
-            v-bind:class="linkClass"
-            :class="[ page.active ? activeClass : null, page.disabled ? disabledClass : null ]"
-            :disabled="page.disabled"
+        <component :is="linkTag"
+          v-bind="linkAttrs(item)"
+          @click="clickPage($event, item)"
+          v-bind:class="linkClass"
+          :class="[ item.active ? activeClass : null, item.disabled ? disabledClass : null ]"
         >
-          <slot v-if="page.type === PageType.FIRST" name="first-icon" v-bind="{ page, href: createLink(page) }">
+          <slot v-if="item.type === PageType.FIRST" name="first-icon" v-bind="{ item, to: createLink(item) }">
             <span>First</span>
           </slot>
-          <slot v-else-if="page.type === PageType.PREVIOUS" name="previous-icon" v-bind="{ page, href: createLink(page) }">
+          <slot v-else-if="item.type === PageType.PREVIOUS" name="previous-icon" v-bind="{ item, to: createLink(item) }">
             <span aria-hidden="true">&laquo;</span>
           </slot>
-          <slot v-else-if="page.type === PageType.NEXT" name="next-icon" v-bind="{ page, href: createLink(page) }">
+          <slot v-else-if="item.type === PageType.NEXT" name="next-icon" v-bind="{ item, to: createLink(item) }">
             <span aria-hidden="true">&raquo;</span>
           </slot>
-          <slot v-else-if="page.type === PageType.LAST" name="last-icon" v-bind="{ page, href: createLink(page) }">
+          <slot v-else-if="item.type === PageType.LAST" name="last-icon" v-bind="{ item, to: createLink(item) }">
             <span>Last</span>
           </slot>
-          <slot v-else name="page" v-bind="{ page, href: createLink(page) }">{{ page.page }}</slot>
-        </a>
+          <slot v-else name="page" v-bind="{ item, to: createLink(item) }">{{ item.page }}</slot>
+        </component>
       </div>
     </slot>
   </div>

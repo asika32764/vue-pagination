@@ -6,7 +6,7 @@
   "type": "module",
   "typings": "dist/index.d.ts",
   "main": "dist/vue-pagination.umd.cjs",
-  "browser": "dist/vue-pagination.umd.js",
+  "browser": "dist/vue-pagination.umd.cjs",
   "module": "dist/vue-pagination.js",
   "scripts": {
     "dev": "vite --config vite.config.docs.ts",

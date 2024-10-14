@@ -2,6 +2,7 @@
   "name": "@asika32764/vue-pagination",
   "version": "1.0.1",
   "license": "MIT",
+  "homepage": "https://github.com/asika32764/vue-pagination",
   "type": "module",
   "typings": "dist/index.d.ts",
   "main": "dist/vue-pagination.umd.cjs",

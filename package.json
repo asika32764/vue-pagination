@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@rollup/plugin-node-resolve": "^15.3.0",
@@ -38,5 +39,6 @@
     "vite-plugin-dts": "^4.2.4",
     "vue": "^3.5.12",
     "vue-tsc": "^2.1.6"
-  }
+  },
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
 }

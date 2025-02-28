@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import ComposableExample from '@/docs/example/ComposableExample.vue';
+import { faGithub, faNpm } from '@fortawesome/free-brands-svg-icons';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import CustomPageItemsExample from './example/CustomPageItemsExample.vue';
 import CustomIconsStyleExample from './example/CustomIconsStyleExample.vue';
 import BootstrapStyleExample from './example/BootstrapStyleExample.vue';
@@ -36,16 +39,19 @@ yarn add @asika32764/vue-pagination
     <div class="d-flex gap-2 justify-content-center">
       <a class="btn btn-primary" href="https://github.com/asika32764/vue-pagination#readme"
         target="_blank">
+        <FontAwesomeIcon :icon="faFile" />
         Documentation
       </a>
 
       <a class="btn btn-dark" href="https://github.com/asika32764/vue-pagination"
         target="_blank">
+        <FontAwesomeIcon :icon="faGithub" />
         GitHub
       </a>
 
       <a class="btn btn-danger" href="https://www.npmjs.com/package/@asika32764/vue-pagination"
         target="_blank">
+        <FontAwesomeIcon :icon="faNpm" />
         NPM
       </a>
     </div>

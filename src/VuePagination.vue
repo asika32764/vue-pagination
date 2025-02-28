@@ -93,12 +93,11 @@ function linkAttrs(item: PageItem) {
       name="page-item"
       v-bind="{ item, to: createLink(item) }"
     >
-      <div :class="itemClass">
+      <div :class="[ item.active ? activeClass : null, item.disabled ? disabledClass : null, itemClass ]">
         <component :is="linkTag"
           v-bind="linkAttrs(item)"
           @click="clickPage($event, item)"
-          v-bind:class="linkClass"
-          :class="[ item.active ? activeClass : null, item.disabled ? disabledClass : null ]"
+          :class="[ item.active ? activeClass : null, item.disabled ? disabledClass : null, linkClass ]"
         >
           <slot v-if="item.type === PageType.FIRST" name="first-icon" v-bind="{ item, to: createLink(item) }">
             <span>First</span>

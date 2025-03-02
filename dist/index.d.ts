@@ -1,15 +1,20 @@
 import { ComponentOptionsMixin } from 'vue';
 import { ComponentProvideOptions } from 'vue';
+import { ComputedRef } from 'vue';
 import { DefineComponent } from 'vue';
+import { MaybeRefOrGetter } from 'vue';
 import { default as PageItem } from './PageItem';
 import { PublicProps } from 'vue';
+import { Ref } from 'vue';
 
 declare const __VLS_component: DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "page-click": (...args: any[]) => void;
 "pages-updated": (...args: any[]) => void;
+"page-changed": (...args: any[]) => void;
 }, string, PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
 "onPage-click"?: ((...args: any[]) => any) | undefined;
 "onPages-updated"?: ((...args: any[]) => any) | undefined;
+"onPage-changed"?: ((...args: any[]) => any) | undefined;
 }>, {
 maxItems: number;
 linkTag: any;
@@ -88,6 +93,23 @@ export declare enum PageType {
     HIGHER = "higher",
     NEXT = "next",
     LAST = "last"
+}
+
+export declare function usePagination(options?: UsePaginationOptions): {
+    compile: () => void;
+    total: Ref<number, number>;
+    perPage: Ref<number, number>;
+    currentPage: Ref<number, number>;
+    pages: ComputedRef<PageItem[]>;
+    pagesCount: ComputedRef<number>;
+    maxItems: Ref<number, number>;
+};
+
+export declare interface UsePaginationOptions {
+    total?: MaybeRefOrGetter<number>;
+    perPage?: MaybeRefOrGetter<number>;
+    currentPage?: MaybeRefOrGetter<number>;
+    maxItems?: MaybeRefOrGetter<number>;
 }
 
 export { }

@@ -1,6 +1,6 @@
 import PageItem from '@/PageItem';
 import { PageType } from '@/PageType.ts';
-import { computed, isReadonly, type MaybeRefOrGetter, Ref, ref, toRef, watchEffect } from 'vue';
+import { computed, isReadonly, isRef, type MaybeRefOrGetter, Ref, ref, watchEffect } from 'vue';
 
 export interface UsePaginationOptions {
   total?: MaybeRefOrGetter<number>;
@@ -9,12 +9,12 @@ export interface UsePaginationOptions {
   maxItems?: MaybeRefOrGetter<number>;
 }
 
-export default function (options: UsePaginationOptions = {}) {
-  const total = toRef(options.total ?? 0);
-  const perPage = toRef(options.perPage ?? 0);
-  const currentPage = toRef(options.currentPage ?? 1);
-  const pagesCount = computed(() =>  Math.ceil(total.value / perPage.value));
-  const max = toRef(options.maxItems ?? 5);
+export default function usePagination(options: UsePaginationOptions = {}) {
+  const total = wrapRef(options.total ?? 0);
+  const perPage = wrapRef(options.perPage ?? 0);
+  const currentPage = wrapRef(options.currentPage ?? 1);
+  const pagesCount = computed(() => Math.ceil(total.value / perPage.value));
+  const max = wrapRef(options.maxItems ?? 5);
 
   const first = ref<PageItem>();
   const previous = ref<PageItem>();
@@ -31,7 +31,7 @@ export default function (options: UsePaginationOptions = {}) {
       current.value,
       ...highers.value,
       next.value,
-      last.value
+      last.value,
     ].filter((p) => p != null);
   });
 
@@ -39,7 +39,7 @@ export default function (options: UsePaginationOptions = {}) {
     reset();
 
     if (currentPage.value > pagesCount.value && !isReadonly(currentPage)) {
-      (currentPage as Ref).value = pagesCount.value;
+      (currentPage as Ref).value = pagesCount.value || 1;
     }
 
     const page = currentPage.value;
@@ -119,7 +119,14 @@ export default function (options: UsePaginationOptions = {}) {
     currentPage,
     pages,
     pagesCount,
-    maxItems: max
+    maxItems: max,
   };
 }
 
+function wrapRef<T>(value: MaybeRefOrGetter<T>): Ref<T> {
+  if (typeof value === 'function') {
+    value = ref((value as Function)());
+  }
+
+  return (isRef(value) ? value : ref(value)) as Ref<T>;
+}

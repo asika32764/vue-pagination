@@ -1,55 +1,58 @@
-import { toRef as P, computed as $, ref as p, watchEffect as U, isReadonly as A, defineComponent as B, mergeModels as N, useModel as H, watch as X, openBlock as T, createElementBlock as O, Fragment as D, renderList as G, unref as I, renderSlot as k, mergeProps as g, createElementVNode as R, normalizeClass as W, createBlock as j, resolveDynamicComponent as q, withCtx as x, createTextVNode as z, toDisplayString as J } from "vue";
+import { computed as $, ref as d, watchEffect as A, isReadonly as B, isRef as H, defineComponent as X, mergeModels as N, useModel as D, watch as O, openBlock as T, createElementBlock as w, Fragment as G, renderList as W, unref as b, renderSlot as k, mergeProps as g, createElementVNode as I, normalizeClass as j, createBlock as q, resolveDynamicComponent as x, withCtx as z, createTextVNode as J, toDisplayString as K } from "vue";
 var u = /* @__PURE__ */ ((t) => (t.FIRST = "first", t.PREVIOUS = "previous", t.LOWER = "lower", t.CURRENT = "current", t.HIGHER = "higher", t.NEXT = "next", t.LAST = "last", t))(u || {});
-function K(t = {}) {
-  const E = P(t.total ?? 0), s = P(t.perPage ?? 0), i = P(t.currentPage ?? 1), o = $(() => Math.ceil(E.value / s.value)), h = P(t.maxItems ?? 5), n = p(), C = p(), m = p([]), e = p([]), r = p(), a = p(), b = p(), F = $(() => [
-    n.value,
+function Q(t = {}) {
+  const h = y(t.total ?? 0), s = y(t.perPage ?? 0), i = y(t.currentPage ?? 1), r = $(() => Math.ceil(h.value / s.value)), E = y(t.maxItems ?? 5), o = d(), C = d(), m = d([]), e = d([]), n = d(), a = d(), R = d(), F = $(() => [
+    o.value,
     C.value,
     ...m.value,
-    b.value,
+    R.value,
     ...e.value,
-    r.value,
+    n.value,
     a.value
   ].filter((l) => l != null)), V = () => {
-    w(), i.value > o.value && !A(i) && (i.value = o.value);
+    U(), i.value > r.value && !B(i) && (i.value = r.value || 1);
     const l = i.value;
-    let f = h.value;
-    f % 2 === 0 && f++;
-    const v = (f - 1) / 2, L = l - 1;
-    let S = Math.min(v, L);
-    const M = o.value - l;
-    let y = Math.min(v, M);
-    l + v > o.value ? S = Math.min(f - y - 1, L) : l - v <= 0 && (y = Math.min(f - S - 1, M));
-    for (let c = l - S; c < l; c++)
-      m.value.push(d(u.LOWER, c));
-    C.value = d(u.PREVIOUS, l - 1, { disabled: l === 1 }), n.value = d(u.FIRST, 1, { disabled: l === 1 });
-    for (let c = l + 1; c <= y + l; c++)
-      e.value.push(d(u.HIGHER, c));
-    r.value = d(u.NEXT, l + 1, { disabled: l === o.value }), a.value = d(u.LAST, o.value, { disabled: l === o.value }), b.value = d(u.CURRENT, l, { active: !0 });
+    let c = E.value;
+    c % 2 === 0 && c++;
+    const v = (c - 1) / 2, L = l - 1;
+    let P = Math.min(v, L);
+    const M = r.value - l;
+    let S = Math.min(v, M);
+    l + v > r.value ? P = Math.min(c - S - 1, L) : l - v <= 0 && (S = Math.min(c - P - 1, M));
+    for (let p = l - P; p < l; p++)
+      m.value.push(f(u.LOWER, p));
+    C.value = f(u.PREVIOUS, l - 1, { disabled: l === 1 }), o.value = f(u.FIRST, 1, { disabled: l === 1 });
+    for (let p = l + 1; p <= S + l; p++)
+      e.value.push(f(u.HIGHER, p));
+    n.value = f(u.NEXT, l + 1, { disabled: l === r.value }), a.value = f(u.LAST, r.value, { disabled: l === r.value }), R.value = f(u.CURRENT, l, { active: !0 });
   };
-  function d(l, f, v = {}) {
+  function f(l, c, v = {}) {
     return {
       type: l,
-      page: f,
+      page: c,
       active: v.active ?? !1,
       disabled: v.disabled ?? !1
     };
   }
-  function w() {
-    n.value = void 0, C.value = void 0, r.value = void 0, a.value = void 0, b.value = void 0, m.value = [], e.value = [];
+  function U() {
+    o.value = void 0, C.value = void 0, n.value = void 0, a.value = void 0, R.value = void 0, m.value = [], e.value = [];
   }
-  return U(() => {
+  return A(() => {
     V();
   }), {
     compile: V,
-    total: E,
+    total: h,
     perPage: s,
     currentPage: i,
     pages: F,
-    pagesCount: o,
-    maxItems: h
+    pagesCount: r,
+    maxItems: E
   };
 }
-const Y = /* @__PURE__ */ B({
+function y(t) {
+  return typeof t == "function" && (t = d(t())), H(t) ? t : d(t);
+}
+const Z = /* @__PURE__ */ X({
   __name: "VuePagination",
   props: /* @__PURE__ */ N({
     total: {},
@@ -67,10 +70,10 @@ const Y = /* @__PURE__ */ B({
     },
     modelModifiers: {}
   }),
-  emits: /* @__PURE__ */ N(["page-click", "pages-updated"], ["update:modelValue"]),
-  setup(t, { emit: E }) {
-    const s = t, i = H(t, "modelValue"), o = E;
-    X(
+  emits: /* @__PURE__ */ N(["page-click", "pages-updated", "page-changed"], ["update:modelValue"]),
+  setup(t, { emit: h }) {
+    const s = t, i = D(t, "modelValue"), r = h;
+    O(
       [
         i,
         () => s.total,
@@ -78,69 +81,71 @@ const Y = /* @__PURE__ */ B({
         () => s.maxItems
       ],
       (e) => {
-        o("pages-updated", ...e);
+        r("pages-updated", ...e);
       }
-    );
-    const { pages: h } = K({
+    ), O(i, () => {
+      r("page-changed", i.value);
+    });
+    const { pages: E } = Q({
       total: () => s.total,
       perPage: () => s.perPage,
       currentPage: i,
       maxItems: () => s.maxItems
     });
-    function n(e) {
+    function o(e) {
       return s.route ? s.route === !0 ? { query: { page: e.page } } : s.route(e) : "javascript:void(0)";
     }
-    function C(e, r) {
-      s.route || (i.value = r.page, o("page-click", e, r));
+    function C(e, n) {
+      s.route || (i.value = n.page), r("page-click", e, n);
     }
     function m(e) {
       return s.linkTag === "a" ? {
-        href: n(e)
+        href: o(e)
       } : s.linkTag === "button" ? {
         disabled: e.disabled
       } : {
-        to: n(e),
+        to: o(e),
         disabled: e.disabled
       };
     }
-    return (e, r) => (T(), O("div", null, [
-      (T(!0), O(D, null, G(I(h), (a) => k(e.$slots, "page-item", g({
+    return (e, n) => (T(), w("div", null, [
+      (T(!0), w(G, null, W(b(E), (a) => k(e.$slots, "page-item", g({
         key: `${a.type}-${a.page}`,
         ref_for: !0
-      }, { item: a, to: n(a) }), () => [
-        R("div", {
-          class: W([a.active ? e.activeClass : null, a.disabled ? e.disabledClass : null, e.itemClass])
+      }, { item: a, to: o(a) }), () => [
+        I("div", {
+          class: j([a.active ? e.activeClass : null, a.disabled ? e.disabledClass : null, e.itemClass])
         }, [
-          (T(), j(q(e.linkTag), g({ ref_for: !0 }, m(a), {
-            onClick: (b) => C(b, a),
+          (T(), q(x(e.linkTag), g({ ref_for: !0 }, m(a), {
+            onClick: (R) => C(R, a),
             class: [a.active ? e.activeClass : null, a.disabled ? e.disabledClass : null, e.linkClass]
           }), {
-            default: x(() => [
-              a.type === I(u).FIRST ? k(e.$slots, "first-icon", g({
+            default: z(() => [
+              a.type === b(u).FIRST ? k(e.$slots, "first-icon", g({
                 key: 0,
                 ref_for: !0
-              }, { item: a, to: n(a) }), () => [
-                r[0] || (r[0] = R("span", null, "First", -1))
-              ]) : a.type === I(u).PREVIOUS ? k(e.$slots, "previous-icon", g({
+              }, { item: a, to: o(a) }), () => [
+                n[0] || (n[0] = I("span", null, "First", -1))
+              ]) : a.type === b(u).PREVIOUS ? k(e.$slots, "previous-icon", g({
                 key: 1,
                 ref_for: !0
-              }, { item: a, to: n(a) }), () => [
-                r[1] || (r[1] = R("span", { "aria-hidden": "true" }, "«", -1))
-              ]) : a.type === I(u).NEXT ? k(e.$slots, "next-icon", g({
+              }, { item: a, to: o(a) }), () => [
+                n[1] || (n[1] = I("span", { "aria-hidden": "true" }, "«", -1))
+              ]) : a.type === b(u).NEXT ? k(e.$slots, "next-icon", g({
                 key: 2,
                 ref_for: !0
-              }, { item: a, to: n(a) }), () => [
-                r[2] || (r[2] = R("span", { "aria-hidden": "true" }, "»", -1))
-              ]) : a.type === I(u).LAST ? k(e.$slots, "last-icon", g({
+              }, { item: a, to: o(a) }), () => [
+                n[2] || (n[2] = I("span", { "aria-hidden": "true" }, "»", -1))
+              ]) : a.type === b(u).LAST ? k(e.$slots, "last-icon", g({
                 key: 3,
                 ref_for: !0
-              }, { item: a, to: n(a) }), () => [
-                r[3] || (r[3] = R("span", null, "Last", -1))
+              }, { item: a, to: o(a) }), () => [
+                n[3] || (n[3] = I("span", null, "Last", -1))
               ]) : k(e.$slots, "page", g({
                 key: 4,
                 ref_for: !0
-              }, { item: a, to: n(a) }), () => [
-                z(J(a.page), 1)
+              }, { item: a, to: o(a) }), () => [
+                J(K(a.page), 1)
               ])
             ]),
             _: 2
@@ -151,5 +156,7 @@ const Y = /* @__PURE__ */ B({
   }
 });
 export {
-  Y as default
+  u as PageType,
+  Z as default,
+  Q as usePagination
 };

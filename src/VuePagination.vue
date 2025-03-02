@@ -26,7 +26,7 @@ const currentPage = defineModel({
   default: 1,
 });
 
-const emits = defineEmits(['page-click', 'pages-updated']);
+const emits = defineEmits(['page-click', 'pages-updated', 'page-changed']);
 
 watch(
   [
@@ -39,6 +39,10 @@ watch(
     emits('pages-updated', ...v);
   },
 );
+
+watch(currentPage, () => {
+  emits('page-changed', currentPage.value);
+});
 
 const { pages } = usePagination({
   total: () => props.total,
@@ -62,8 +66,9 @@ function createLink(page: PageItem) {
 function clickPage(event: MouseEvent, page: PageItem) {
   if (!props.route) {
     currentPage.value = page.page;
-    emits('page-click', event, page);
   }
+
+  emits('page-click', event, page);
 }
 
 function linkAttrs(item: PageItem) {

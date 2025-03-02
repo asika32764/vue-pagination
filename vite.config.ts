@@ -18,7 +18,7 @@ export default defineConfig({
     outDir: 'dist',
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'src/VuePagination.vue'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'VuePagination',
       // the proper extensions will be added
       fileName: 'vue-pagination',

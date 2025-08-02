@@ -1,9 +1,9 @@
-# Vue Pagination
+# Vue Pagination Headless
 
 [![Version](https://img.shields.io/npm/v/%40asika32764/vue-pagination.svg?style=flat-square)](https://www.npmjs.com/package/@asika32764/vue-pagination)
 [![License](https://img.shields.io/npm/l/%40asika32764/vue-pagination.svg?style=flat-square)](LICENSE)
 
-A very simple pagination without any style that supports developers to custom for every project. [DEMO](https://about.asika.tw/vue-pagination/)
+Headless and non-style pagination for Vue 3. [DEMO](https://about.asika.tw/vue-pagination/)
 
 <!-- TOC -->
 * [Vue Pagination](#vue-pagination)

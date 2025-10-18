@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ShowCard from '@/docs/ShowCard.vue';
+import ShowCard from '~/docs/ShowCard.vue';
 import { ref } from 'vue';
 import VuePagination from '../../VuePagination.vue';
 

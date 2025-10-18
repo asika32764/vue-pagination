@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ShowCard from '@/docs/ShowCard.vue';
+import ShowCard from '~/docs/ShowCard.vue';
 import { faBackward, faBackwardStep, faForward, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ref } from 'vue';

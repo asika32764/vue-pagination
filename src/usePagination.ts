@@ -1,5 +1,5 @@
-import PageItem from '@/PageItem';
-import { PageType } from '@/PageType.ts';
+import PageItem from '~/PageItem';
+import { PageType } from '~/PageType.ts';
 import { computed, isReadonly, isRef, type MaybeRefOrGetter, Ref, ref, watchEffect } from 'vue';
 
 export interface UsePaginationOptions {

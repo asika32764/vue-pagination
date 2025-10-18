@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ComposableExample from '@/docs/example/ComposableExample.vue';
+import ComposableExample from '~/docs/example/ComposableExample.vue';
 import { faGithub, faNpm } from '@fortawesome/free-brands-svg-icons';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

@@ -1,7 +1,7 @@
 import VuePagination from './VuePagination.vue';
 
-export * from './PageType';
-export type { default as PageItem } from './PageItem';
+export * from './enum/PageType';
+export type { PageItem } from './types';
 export * from './usePagination';
 export { default as usePagination } from './usePagination';
 

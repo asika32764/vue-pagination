@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
 import ShowCard from '~/docs/ShowCard.vue';
-import { PageType } from '~/PageType.ts';
-import usePagination from '~/usePagination.ts';
+import { PageType } from '~/enum/PageType';
+import usePagination from '~/usePagination';
 import { faBackward, faBackwardStep, faForward, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 

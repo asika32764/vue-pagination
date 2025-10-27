@@ -23,24 +23,27 @@ if (cliInput['help'] || cliInput['h']) {
 console.log(`>>> yarn build:prod`);
 exec(`yarn build:prod`, { stdio: 'inherit' });
 
-console.log(`>>> npm version ${args.join(' ')}`);
-const buffer = exec(`npm version ${args.join(' ')}`);
+console.log(`>>> npm version ${args.join(' ')} --no-git-tag-version`);
+exec(`npm version ${args.join(' ')} --no-git-tag-version`, { stdio: 'inherit' });
 
-const ver = buffer.toString().split("\n")[1];
+const ver = exec(`npm pkg get version | tr -d '"'`).toString().trim();
 
 console.log('>>> Git commit all');
-exec(`git add .`, { stdio: 'inherit' });
+
 try {
   exec(`git commit -am "Prepare release ${ver}."`, { stdio: 'inherit' });
 } catch (e) {
   console.log(e.message);
 }
 
-const branch = cliInput['b'] || 'main';
+console.log(`>>> Git tag ${ver}`);
+exec(`git tag ${ver}`, { stdio: 'inherit' });
+
+// const branch = cliInput['b'] || 'main';
 
 console.log('>>> Push to git');
 
-exec(`git push origin ${branch}`, { stdio: 'inherit' });
+exec(`git push`, { stdio: 'inherit' });
 
 console.log('>> Publish to npm');
 

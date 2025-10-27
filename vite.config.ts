@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import dts from 'unplugin-dts/vite'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   base: `./`,
@@ -13,8 +13,9 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      processor: 'vue',
-      bundleTypes: true
+      tsconfigPath: './tsconfig.lib.json',
+      rollupTypes: true,
+      exclude: ['src/docs/**/*']
     }),
   ],
   build: {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import usePagination from './usePagination.ts';
+import usePagination from './usePagination';
 import { watch } from 'vue';
-import PageItem from './PageItem';
-import { PageType } from './PageType';
+import type { PageItem } from './types';
+import { PageType } from './enum/PageType';
 
 const props = withDefaults(
   defineProps<{

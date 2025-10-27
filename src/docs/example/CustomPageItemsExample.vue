@@ -3,7 +3,7 @@ import ShowCard from '~/docs/ShowCard.vue';
 import { faBackward, faBackwardStep, faForward, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ref } from 'vue';
-import { PageType } from '../../PageType';
+import { PageType } from '~/enum/PageType';
 import VuePagination from '../../VuePagination.vue';
 
 const total = ref(150);

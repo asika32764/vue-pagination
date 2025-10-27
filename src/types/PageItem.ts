@@ -1,6 +1,6 @@
-import { PageType } from './PageType';
+import { PageType } from '../enum/PageType';
 
-export default interface PageItem {
+export interface PageItem {
   type: PageType;
   page: number;
   active: boolean;

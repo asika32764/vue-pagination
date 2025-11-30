@@ -1,6 +1,6 @@
 import { type PageItem } from '~/types';
 import { PageType } from '~/enum/PageType';
-import { computed, isReadonly, isRef, type MaybeRefOrGetter, Ref, ref, watchEffect } from 'vue';
+import { computed, isReadonly, isRef, type MaybeRefOrGetter, Ref, ref, toValue, watchEffect } from 'vue';
 
 export interface UsePaginationOptions {
   total?: MaybeRefOrGetter<number>;
@@ -37,6 +37,8 @@ export default function usePagination(options: UsePaginationOptions = {}) {
 
   const compile = () => {
     reset();
+
+    console.log('re-compile', perPage.value, pagesCount.value);
 
     if (currentPage.value > pagesCount.value && !isReadonly(currentPage)) {
       (currentPage as Ref).value = pagesCount.value || 1;
@@ -124,9 +126,16 @@ export default function usePagination(options: UsePaginationOptions = {}) {
 }
 
 function wrapRef<T>(value: MaybeRefOrGetter<T>): Ref<T> {
-  if (typeof value === 'function') {
-    value = ref((value as Function)());
-  }
-
-  return (isRef(value) ? value : ref(value)) as Ref<T>;
+  return computed({
+    get() {
+      return toValue(value);
+    },
+    set(v) {
+      if ('value' in (value as any)) {
+        (value as any).value = v;
+      } else {
+        console.warn('This MaybeRefOrGetter is readonly!')
+      }
+    }
+  });
 }

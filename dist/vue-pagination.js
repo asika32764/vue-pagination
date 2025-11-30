@@ -1,60 +1,67 @@
-import { computed as $, ref as d, watchEffect as A, isReadonly as B, isRef as H, defineComponent as X, mergeModels as N, useModel as D, watch as O, openBlock as T, createElementBlock as w, Fragment as G, renderList as W, unref as b, renderSlot as k, mergeProps as g, createElementVNode as I, normalizeClass as j, createBlock as q, resolveDynamicComponent as x, withCtx as z, createTextVNode as J, toDisplayString as K } from "vue";
-var u = /* @__PURE__ */ ((t) => (t.FIRST = "first", t.PREVIOUS = "previous", t.LOWER = "lower", t.CURRENT = "current", t.HIGHER = "higher", t.NEXT = "next", t.LAST = "last", t))(u || {});
-function Q(t = {}) {
-  const h = y(t.total ?? 0), s = y(t.perPage ?? 0), i = y(t.currentPage ?? 1), r = $(() => Math.ceil(h.value / s.value)), E = y(t.maxItems ?? 5), o = d(), C = d(), m = d([]), e = d([]), n = d(), a = d(), R = d(), F = $(() => [
+import { computed as V, ref as p, watchEffect as A, isReadonly as B, toValue as H, defineComponent as G, mergeModels as $, useModel as X, watch as w, openBlock as T, createElementBlock as N, Fragment as D, renderList as W, unref as h, renderSlot as C, mergeProps as g, createElementVNode as I, normalizeClass as j, createBlock as q, resolveDynamicComponent as x, withCtx as z, createTextVNode as J, toDisplayString as K } from "vue";
+var u = /* @__PURE__ */ ((l) => (l.FIRST = "first", l.PREVIOUS = "previous", l.LOWER = "lower", l.CURRENT = "current", l.HIGHER = "higher", l.NEXT = "next", l.LAST = "last", l))(u || {});
+function Q(l = {}) {
+  const k = y(l.total ?? 0), s = y(l.perPage ?? 0), i = y(l.currentPage ?? 1), n = V(() => Math.ceil(k.value / s.value)), E = y(l.maxItems ?? 5), o = p(), m = p(), b = p([]), e = p([]), r = p(), a = p(), R = p(), F = V(() => [
     o.value,
-    C.value,
-    ...m.value,
+    m.value,
+    ...b.value,
     R.value,
     ...e.value,
-    n.value,
+    r.value,
     a.value
-  ].filter((l) => l != null)), V = () => {
-    U(), i.value > r.value && !B(i) && (i.value = r.value || 1);
-    const l = i.value;
-    let c = E.value;
-    c % 2 === 0 && c++;
-    const v = (c - 1) / 2, L = l - 1;
+  ].filter((t) => t != null)), M = () => {
+    U(), console.log("re-compile", s.value, n.value), i.value > n.value && !B(i) && (i.value = n.value || 1);
+    const t = i.value;
+    let f = E.value;
+    f % 2 === 0 && f++;
+    const v = (f - 1) / 2, L = t - 1;
     let P = Math.min(v, L);
-    const M = r.value - l;
-    let S = Math.min(v, M);
-    l + v > r.value ? P = Math.min(c - S - 1, L) : l - v <= 0 && (S = Math.min(c - P - 1, M));
-    for (let p = l - P; p < l; p++)
-      m.value.push(f(u.LOWER, p));
-    C.value = f(u.PREVIOUS, l - 1, { disabled: l === 1 }), o.value = f(u.FIRST, 1, { disabled: l === 1 });
-    for (let p = l + 1; p <= S + l; p++)
-      e.value.push(f(u.HIGHER, p));
-    n.value = f(u.NEXT, l + 1, { disabled: l === r.value }), a.value = f(u.LAST, r.value, { disabled: l === r.value }), R.value = f(u.CURRENT, l, { active: !0 });
+    const O = n.value - t;
+    let S = Math.min(v, O);
+    t + v > n.value ? P = Math.min(f - S - 1, L) : t - v <= 0 && (S = Math.min(f - P - 1, O));
+    for (let c = t - P; c < t; c++)
+      b.value.push(d(u.LOWER, c));
+    m.value = d(u.PREVIOUS, t - 1, { disabled: t === 1 }), o.value = d(u.FIRST, 1, { disabled: t === 1 });
+    for (let c = t + 1; c <= S + t; c++)
+      e.value.push(d(u.HIGHER, c));
+    r.value = d(u.NEXT, t + 1, { disabled: t === n.value }), a.value = d(u.LAST, n.value, { disabled: t === n.value }), R.value = d(u.CURRENT, t, { active: !0 });
   };
-  function f(l, c, v = {}) {
+  function d(t, f, v = {}) {
     return {
-      type: l,
-      page: c,
+      type: t,
+      page: f,
       active: v.active ?? !1,
       disabled: v.disabled ?? !1
     };
   }
   function U() {
-    o.value = void 0, C.value = void 0, n.value = void 0, a.value = void 0, R.value = void 0, m.value = [], e.value = [];
+    o.value = void 0, m.value = void 0, r.value = void 0, a.value = void 0, R.value = void 0, b.value = [], e.value = [];
   }
   return A(() => {
-    V();
+    M();
   }), {
-    compile: V,
-    total: h,
+    compile: M,
+    total: k,
     perPage: s,
     currentPage: i,
     pages: F,
-    pagesCount: r,
+    pagesCount: n,
     maxItems: E
   };
 }
-function y(t) {
-  return typeof t == "function" && (t = d(t())), H(t) ? t : d(t);
+function y(l) {
+  return V({
+    get() {
+      return H(l);
+    },
+    set(k) {
+      "value" in l ? l.value = k : console.warn("This MaybeRefOrGetter is readonly!");
+    }
+  });
 }
-const Z = /* @__PURE__ */ X({
+const Z = /* @__PURE__ */ G({
   __name: "VuePagination",
-  props: /* @__PURE__ */ N({
+  props: /* @__PURE__ */ $({
     total: {},
     perPage: {},
     maxItems: { default: 5 },
@@ -70,10 +77,10 @@ const Z = /* @__PURE__ */ X({
     },
     modelModifiers: {}
   }),
-  emits: /* @__PURE__ */ N(["page-click", "pages-updated", "page-changed"], ["update:modelValue"]),
-  setup(t, { emit: h }) {
-    const s = t, i = D(t, "modelValue"), r = h;
-    O(
+  emits: /* @__PURE__ */ $(["page-click", "pages-updated", "page-changed"], ["update:modelValue"]),
+  setup(l, { emit: k }) {
+    const s = l, i = X(l, "modelValue"), n = k;
+    w(
       [
         i,
         () => s.total,
@@ -81,10 +88,10 @@ const Z = /* @__PURE__ */ X({
         () => s.maxItems
       ],
       (e) => {
-        r("pages-updated", ...e);
+        n("pages-updated", ...e);
       }
-    ), O(i, () => {
-      r("page-changed", i.value);
+    ), w(i, () => {
+      n("page-changed", i.value);
     });
     const { pages: E } = Q({
       total: () => s.total,
@@ -95,10 +102,10 @@ const Z = /* @__PURE__ */ X({
     function o(e) {
       return s.route ? s.route === !0 ? { query: { page: e.page } } : s.route(e) : "javascript:void(0)";
     }
-    function C(e, n) {
-      s.route || (i.value = n.page), r("page-click", e, n);
+    function m(e, r) {
+      s.route || (i.value = r.page), n("page-click", e, r);
     }
-    function m(e) {
+    function b(e) {
       return s.linkTag === "a" ? {
         href: o(e)
       } : s.linkTag === "button" ? {
@@ -108,40 +115,40 @@ const Z = /* @__PURE__ */ X({
         disabled: e.disabled
       };
     }
-    return (e, n) => (T(), w("div", null, [
-      (T(!0), w(G, null, W(b(E), (a) => k(e.$slots, "page-item", g({
+    return (e, r) => (T(), N("div", null, [
+      (T(!0), N(D, null, W(h(E), (a) => C(e.$slots, "page-item", g({
         key: `${a.type}-${a.page}`,
         ref_for: !0
       }, { item: a, to: o(a) }), () => [
         I("div", {
           class: j([a.active ? e.activeClass : null, a.disabled ? e.disabledClass : null, e.itemClass])
         }, [
-          (T(), q(x(e.linkTag), g({ ref_for: !0 }, m(a), {
-            onClick: (R) => C(R, a),
+          (T(), q(x(e.linkTag), g({ ref_for: !0 }, b(a), {
+            onClick: (R) => m(R, a),
             class: [a.active ? e.activeClass : null, a.disabled ? e.disabledClass : null, e.linkClass]
           }), {
             default: z(() => [
-              a.type === b(u).FIRST ? k(e.$slots, "first-icon", g({
+              a.type === h(u).FIRST ? C(e.$slots, "first-icon", g({
                 key: 0,
                 ref_for: !0
               }, { item: a, to: o(a) }), () => [
-                n[0] || (n[0] = I("span", null, "First", -1))
-              ]) : a.type === b(u).PREVIOUS ? k(e.$slots, "previous-icon", g({
+                r[0] || (r[0] = I("span", null, "First", -1))
+              ]) : a.type === h(u).PREVIOUS ? C(e.$slots, "previous-icon", g({
                 key: 1,
                 ref_for: !0
               }, { item: a, to: o(a) }), () => [
-                n[1] || (n[1] = I("span", { "aria-hidden": "true" }, "«", -1))
-              ]) : a.type === b(u).NEXT ? k(e.$slots, "next-icon", g({
+                r[1] || (r[1] = I("span", { "aria-hidden": "true" }, "«", -1))
+              ]) : a.type === h(u).NEXT ? C(e.$slots, "next-icon", g({
                 key: 2,
                 ref_for: !0
               }, { item: a, to: o(a) }), () => [
-                n[2] || (n[2] = I("span", { "aria-hidden": "true" }, "»", -1))
-              ]) : a.type === b(u).LAST ? k(e.$slots, "last-icon", g({
+                r[2] || (r[2] = I("span", { "aria-hidden": "true" }, "»", -1))
+              ]) : a.type === h(u).LAST ? C(e.$slots, "last-icon", g({
                 key: 3,
                 ref_for: !0
               }, { item: a, to: o(a) }), () => [
-                n[3] || (n[3] = I("span", null, "Last", -1))
-              ]) : k(e.$slots, "page", g({
+                r[3] || (r[3] = I("span", null, "Last", -1))
+              ]) : C(e.$slots, "page", g({
                 key: 4,
                 ref_for: !0
               }, { item: a, to: o(a) }), () => [

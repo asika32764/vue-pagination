@@ -38,8 +38,6 @@ export default function usePagination(options: UsePaginationOptions = {}) {
   const compile = () => {
     reset();
 
-    console.log('re-compile', perPage.value, pagesCount.value);
-
     if (currentPage.value > pagesCount.value && !isReadonly(currentPage)) {
       (currentPage as Ref).value = pagesCount.value || 1;
     }
